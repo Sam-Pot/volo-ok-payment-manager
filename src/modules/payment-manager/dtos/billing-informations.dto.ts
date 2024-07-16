@@ -14,7 +14,6 @@ export class BillingInformations {
     expiryYear!: number;
 
     @IsNumber()
-    @Length(3)
     cvv!: number;
 
     @IsString()

@@ -4,6 +4,7 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'path';
 import { ValidationPipe } from '@nestjs/common';
 import { initializeTransactionalContext } from 'typeorm-transactional';
+import { Http2gRPCExceptionFilter } from './shared-modules/filters/http-exception-filter';
 
 async function bootstrap() {
   initializeTransactionalContext();
@@ -26,7 +27,7 @@ async function bootstrap() {
       transform: true,
     }
   ));
-
+  app.useGlobalFilters(new Http2gRPCExceptionFilter())
   await app.listen();
 }
 bootstrap();
